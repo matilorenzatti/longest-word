@@ -1,5 +1,6 @@
 import random
 import string
+import requests
 
 class Game:
     def __init__(self) -> list:
@@ -29,4 +30,14 @@ class Game:
             else:
                 return False
 
-        return True
+        url = f'https://dictionary.lewagon.com/{word}'
+
+        response = requests.get(url).json()
+
+        if response.get('found') is True:
+
+            return True
+
+        else:
+
+            return False
